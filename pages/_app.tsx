@@ -6,6 +6,7 @@ import '../src/assets/styles/global.css';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../src/assets/theme';
 import Header from '../src/components/Header/Header';
+import ScrollableTab from '../src/components/Header/ScrollableTab';
 import { PageProps } from '../src/types/type';
 
 type AppPageProps = Omit<AppProps<PageProps>, 'pageProps'> & {
@@ -37,6 +38,7 @@ export default function App({
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
                 <Header />
+                <ScrollableTab />
                 <main className={'mt-16 sm:mt-28'}>
                     <Component {...pageProps} />
                 </main>

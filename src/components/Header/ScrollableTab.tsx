@@ -15,7 +15,7 @@ const a11yProps = (id: string) => {
 const ScrollableTab = (): JSX.Element => {
     const router = useRouter();
 
-    const n = () => {
+    const tabNumber = () => {
         if (typeof window !== 'undefined') {
             const path = window.location.pathname;
             switch (path) {
@@ -27,19 +27,21 @@ const ScrollableTab = (): JSX.Element => {
                     return 3;
                 case '/pet':
                     return 4;
-                case '/game':
+                case '/sport':
                     return 5;
-                case '/entertainment':
+                case '/game':
                     return 6;
-                case '/news':
+                case '/entertainment':
                     return 7;
+                case '/news':
+                    return 8;
                 default:
                     return 0;
             }
         }
     };
 
-    const [value, setValue] = useState(n);
+    const [value, setValue] = useState(tabNumber);
 
     const handleChange = (
         event: React.ChangeEvent<HTMLButtonElement>,
@@ -85,6 +87,12 @@ const ScrollableTab = (): JSX.Element => {
         },
         {
             func: selectMenu,
+            label: 'スポーツ',
+            id: 'sport',
+            value: '/sport',
+        },
+        {
+            func: selectMenu,
             label: 'ゲーム',
             id: 'game',
             value: '/game',
@@ -120,7 +128,6 @@ const ScrollableTab = (): JSX.Element => {
                     variant="scrollable"
                     scrollButtons="auto"
                     aria-label="scrollable auto tabs"
-                    className={'xl:mx-auto'}
                 >
                     {menus.map((menu) => (
                         //

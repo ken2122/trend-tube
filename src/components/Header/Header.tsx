@@ -1,6 +1,5 @@
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import ScrollableTab from './ScrollableTab';
 import { useRouter } from 'next/router';
 
 const Header = (): JSX.Element => {
@@ -19,7 +18,6 @@ const Header = (): JSX.Element => {
                     />
                 </Toolbar>
             </AppBar>
-            <ScrollableTab />
         </div>
     );
 };
