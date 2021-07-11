@@ -14,34 +14,40 @@ const a11yProps = (id: string) => {
 
 const ScrollableTab = (): JSX.Element => {
     const router = useRouter();
+    let pathNumber: number;
 
-    const tabNumber = () => {
-        if (typeof window !== 'undefined') {
-            const path = window.location.pathname;
-            switch (path) {
-                case '/anime':
-                    return 1;
-                case '/car':
-                    return 2;
-                case '/music':
-                    return 3;
-                case '/pet':
-                    return 4;
-                case '/sport':
-                    return 5;
-                case '/game':
-                    return 6;
-                case '/entertainment':
-                    return 7;
-                case '/news':
-                    return 8;
-                default:
-                    return 0;
-            }
-        }
-    };
+    const path = router.pathname;
+    switch (path) {
+        case '/anime':
+            pathNumber = 1;
+            break;
+        case '/car':
+            pathNumber = 2;
+            break;
+        case '/music':
+            pathNumber = 3;
+            break;
+        case '/pet':
+            pathNumber = 4;
+            break;
+        case '/sport':
+            pathNumber = 5;
+            break;
+        case '/game':
+            pathNumber = 6;
+            break;
+        case '/entertainment':
+            pathNumber = 7;
+            break;
+        case '/news':
+            pathNumber = 8;
+            break;
+        default:
+            pathNumber = 0;
+            break;
+    }
 
-    const [value, setValue] = useState(tabNumber);
+    const [value, setValue] = useState(pathNumber);
 
     const handleChange = (
         event: React.ChangeEvent<HTMLButtonElement>,
