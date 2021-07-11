@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Divider from '@material-ui/core/Divider';
 import Tabs from '@material-ui/core/Tabs';
@@ -14,7 +14,32 @@ const a11yProps = (id: string) => {
 
 const ScrollableTab = (): JSX.Element => {
     const router = useRouter();
-    const [value, setValue] = useState(0);
+
+    const n = () => {
+        if (typeof window !== 'undefined') {
+            const path = window.location.pathname;
+            switch (path) {
+                case '/anime':
+                    return 1;
+                case '/car':
+                    return 2;
+                case '/music':
+                    return 3;
+                case '/pet':
+                    return 4;
+                case '/game':
+                    return 5;
+                case '/entertainment':
+                    return 6;
+                case '/news':
+                    return 7;
+                default:
+                    return 0;
+            }
+        }
+    };
+
+    const [value, setValue] = useState(n);
 
     const handleChange = (
         event: React.ChangeEvent<HTMLButtonElement>,
