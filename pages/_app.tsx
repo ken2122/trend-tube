@@ -39,7 +39,7 @@ export default function App({
                 <CssBaseline />
                 <Header />
                 <ScrollableTab />
-                <main className={'mt-16 sm:mt-28'}>
+                <main className={'mt-28'}>
                     <Component {...pageProps} />
                 </main>
             </ThemeProvider>

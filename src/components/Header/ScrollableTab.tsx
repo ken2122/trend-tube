@@ -15,36 +15,35 @@ const a11yProps = (id: string) => {
 const ScrollableTab = (): JSX.Element => {
     const router = useRouter();
     let pathNumber: number;
+    const { id } = router.query;
 
-    const path = router.pathname;
-    switch (path) {
-        case '/anime':
+    switch (id) {
+        case 'anime':
             pathNumber = 1;
             break;
-        case '/car':
+        case 'car':
             pathNumber = 2;
             break;
-        case '/music':
+        case 'music':
             pathNumber = 3;
             break;
-        case '/pet':
+        case 'pet':
             pathNumber = 4;
             break;
-        case '/sport':
+        case 'sport':
             pathNumber = 5;
             break;
-        case '/game':
+        case 'game':
             pathNumber = 6;
             break;
-        case '/entertainment':
+        case 'entertainment':
             pathNumber = 7;
             break;
-        case '/news':
+        case 'news':
             pathNumber = 8;
             break;
         default:
             pathNumber = 0;
-            break;
     }
 
     const [value, setValue] = useState(pathNumber);
@@ -121,9 +120,7 @@ const ScrollableTab = (): JSX.Element => {
         <div>
             <AppBar
                 position="fixed"
-                className={
-                    'flex-grow w-full bg-gray-200 h-12 mt-auto bottom-0 md:mt-16'
-                }
+                className={'flex-grow w-full bg-gray-200 h-12 mt-16'}
             >
                 <Divider />
                 <Tabs

@@ -8,7 +8,7 @@ const Header = (): JSX.Element => {
     return (
         <div>
             <AppBar position="fixed" className={'bg-white'}>
-                <Toolbar className={'max-w-screen-lg w-full my-0 mx-auto'}>
+                <Toolbar className={'max-w-screen-lg w-full my-0 mx-auto h-16'}>
                     <img
                         alt="Logo"
                         src={'/logo.png'}
