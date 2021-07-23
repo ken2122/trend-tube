@@ -9,40 +9,47 @@ const VideoCard = (props: CardProps): JSX.Element => {
         notation: 'compact',
     });
 
-    const date1 = new Date();
-    const date2 = [
-        date1.getFullYear(),
-        date1.getMonth() + 1,
-        date1.getDate(),
-        date1.getHours(),
-        date1.getMinutes(),
+    const now = new Date();
+    const time = props.publishedAt.split(/-|T|:/).map((date) => Number(date));
+    const publishedDate = new Date(
+        time[0], //西暦
+        time[1] - 1, //月
+        time[2], //日
+        time[3], //時
+        time[4] //分
+    );
+    const diffMillisecond = Number(now) - Number(publishedDate);
+    const diffDate = new Date(diffMillisecond - 32400000);
+
+    const date = [
+        diffDate.getFullYear() - 1970,
+        diffDate.getMonth(),
+        diffDate.getDate() - 1,
+        diffDate.getHours(),
+        diffDate.getMinutes(),
     ];
 
-    const time = props.publishedAt.split(/-|T|:/);
-    const time2 = time.map((date) => Number(date));
     let i: number;
-    let j: number;
     let publishedAt: string;
 
     for (i = 0; i < 5; i++) {
-        j = date2[i] - time2[i];
-        if (j > 0) break;
+        if (date[i] > 0) break;
     }
     switch (i) {
         case 0:
-            publishedAt = j + '年前';
+            publishedAt = date[i] + '年前';
             break;
         case 1:
-            publishedAt = j + 'ヶ月前';
+            publishedAt = date[i] + 'ヶ月前';
             break;
         case 2:
-            publishedAt = j + '日前';
+            publishedAt = date[i] + '日前';
             break;
         case 3:
-            publishedAt = j + '時間前';
+            publishedAt = date[i] + '時間前';
             break;
         default:
-            publishedAt = j + '分前';
+            publishedAt = date[i] + '分前';
     }
 
     const duration = props.duration.split(/PT|H|M|S/);
