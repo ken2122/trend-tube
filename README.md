@@ -2,7 +2,7 @@
 
 ## URL
 
-https://trend-tube-kxuz4md9l-ken2122.vercel.app/
+https://trend-tube-eoa8lneqf-ken2122.vercel.app/
 
 ## 使用技術
 
