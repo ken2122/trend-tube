@@ -4,11 +4,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-
 import { useRouter } from 'next/router';
 
 const Header = (): JSX.Element => {
     const router = useRouter();
+
+    let { id } = router.query;
+    if (id === undefined) {
+        id = '';
+    }
+
     const [keyword, setKeyword] = useState('');
 
     const inputKeyword = useCallback(
@@ -21,7 +26,11 @@ const Header = (): JSX.Element => {
     return (
         <div>
             <AppBar position="fixed" className={'bg-white'}>
-                <Toolbar className={'max-w-screen-lg w-full my-0 mx-auto h-16'}>
+                <Toolbar
+                    className={
+                        'max-w-screen-lg w-full my-0 mx-auto h-16 justify-between'
+                    }
+                >
                     <img
                         alt="Logo"
                         src={'/logo.png'}
@@ -29,22 +38,30 @@ const Header = (): JSX.Element => {
                         onClick={() => router.push('/')}
                         role="button"
                     />
-                    <TextField
-                        fullWidth={false}
-                        label="検索"
-                        margin="dense"
-                        multiline={false}
-                        required={false}
-                        rows={1}
-                        value={keyword}
-                        type="text"
-                        onChange={inputKeyword}
-                    />
-                    <IconButton
-                        onClick={() => router.push('?search=' + keyword)}
-                    >
-                        <SearchIcon />
-                    </IconButton>
+                    <div className={'flex items-end'}>
+                        <TextField
+                            fullWidth={false}
+                            label="検索"
+                            margin="dense"
+                            multiline={false}
+                            required={false}
+                            rows={1}
+                            value={keyword}
+                            type="text"
+                            onChange={inputKeyword}
+                        />
+                        <IconButton
+                            onClick={() => {
+                                if (keyword !== '') {
+                                    router.push(
+                                        '/' + id + '?search=' + keyword
+                                    );
+                                }
+                            }}
+                        >
+                            <SearchIcon />
+                        </IconButton>
+                    </div>
                 </Toolbar>
             </AppBar>
         </div>
