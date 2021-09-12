@@ -1,9 +1,22 @@
+import { useState, useCallback } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+
 import { useRouter } from 'next/router';
 
 const Header = (): JSX.Element => {
     const router = useRouter();
+    const [keyword, setKeyword] = useState('');
+
+    const inputKeyword = useCallback(
+        (event: React.ChangeEvent<HTMLInputElement>) => {
+            setKeyword(event.target.value);
+        },
+        [setKeyword]
+    );
 
     return (
         <div>
@@ -16,6 +29,22 @@ const Header = (): JSX.Element => {
                         onClick={() => router.push('/')}
                         role="button"
                     />
+                    <TextField
+                        fullWidth={false}
+                        label="検索"
+                        margin="dense"
+                        multiline={false}
+                        required={false}
+                        rows={1}
+                        value={keyword}
+                        type="text"
+                        onChange={inputKeyword}
+                    />
+                    <IconButton
+                        onClick={() => router.push('?search=' + keyword)}
+                    >
+                        <SearchIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </div>
