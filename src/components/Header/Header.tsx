@@ -41,7 +41,7 @@ const Header = (): JSX.Element => {
                     <div className={'flex items-end'}>
                         <TextField
                             fullWidth={false}
-                            label="検索"
+                            label="検索フィルタ"
                             margin="dense"
                             multiline={false}
                             required={false}

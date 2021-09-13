@@ -1,6 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
+import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import { fetchVideos } from '../src/components/videos/fetchVideos';
+import { searchVideos } from '../src/components/videos/searchVieos';
 import VideoCard from '../src/components/videos/VideoCard';
 import { PageProps, Item } from '../src/types/type';
 
@@ -94,9 +96,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const Index = ({ trendingVideos }: PageProps): JSX.Element => {
+    const router = useRouter();
+    const search = router.query.search;
+
+    const searchedVideos = searchVideos(search, trendingVideos);
+
     return (
         <div className={'flex flex-wrap'}>
-            {trendingVideos.map((data) => (
+            {searchedVideos.map((data) => (
                 <VideoCard
                     key={data.id}
                     id={data.id}

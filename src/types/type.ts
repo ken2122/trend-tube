@@ -33,3 +33,9 @@ export type CardProps = {
     viewCount: string;
     publishedAt: string;
 };
+
+declare module 'querystring' {
+    interface ParsedUrlQuery {
+        search?: string;
+    }
+}

@@ -1,5 +1,7 @@
 import { GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import { fetchVideos } from '../src/components/videos/fetchVideos';
+import { searchVideos } from '../src/components/videos/searchVieos';
 import VideoCard from '../src/components/videos/VideoCard';
 import { PageProps } from '../src/types/type';
 
@@ -13,9 +15,14 @@ export const getStaticProps: GetStaticProps<PageProps> = async () => {
 };
 
 const Index = ({ trendingVideos }: PageProps): JSX.Element => {
+    const router = useRouter();
+    const search = router.query.search;
+
+    const searchedVideos = searchVideos(search, trendingVideos);
+
     return (
         <div className={'flex flex-wrap'}>
-            {trendingVideos.map((data) => (
+            {searchedVideos.map((data) => (
                 <VideoCard
                     key={data.id}
                     id={data.id}
