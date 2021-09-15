@@ -37,5 +37,6 @@ export type CardProps = {
 declare module 'querystring' {
     interface ParsedUrlQuery {
         search?: string;
+        sort?: string;
     }
 }

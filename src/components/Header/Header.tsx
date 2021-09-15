@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import { useRouter } from 'next/router';
+import SelectMenus from './SelectMenus';
 
 const Header = (): JSX.Element => {
     const router = useRouter();
@@ -62,6 +63,7 @@ const Header = (): JSX.Element => {
                             <SearchIcon />
                         </IconButton>
                     </div>
+                    <SelectMenus />
                 </Toolbar>
             </AppBar>
         </div>
