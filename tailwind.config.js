@@ -8,6 +8,9 @@ module.exports = {
                 '1/2-4': 'calc(50% - 16px)',
                 '100%-2': 'calc(100% - 8px)',
             },
+            screens: {
+                'sm-max': { max: '639px' },
+            },
         },
     },
     variants: {

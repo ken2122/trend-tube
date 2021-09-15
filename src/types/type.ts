@@ -34,6 +34,11 @@ export type CardProps = {
     publishedAt: string;
 };
 
+export type ClosableDrawerProps = {
+    open: boolean;
+    onClose: (isOpen: boolean, event?: React.KeyboardEvent) => void;
+};
+
 declare module 'querystring' {
     interface ParsedUrlQuery {
         search?: string;

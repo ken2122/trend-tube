@@ -1,27 +1,28 @@
 import { useState, useCallback } from 'react';
+import { useRouter } from 'next/router';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
-import { useRouter } from 'next/router';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchBox from './SearchBox';
 import SelectMenus from './SelectMenus';
+import ClosableDrawer from './ClosableDrawer';
 
 const Header = (): JSX.Element => {
     const router = useRouter();
 
-    let { id } = router.query;
-    if (id === undefined) {
-        id = '';
-    }
+    const [sideBarOpen, setSideBarOpen] = useState(false);
 
-    const [keyword, setKeyword] = useState('');
-
-    const inputKeyword = useCallback(
-        (event: React.ChangeEvent<HTMLInputElement>) => {
-            setKeyword(event.target.value);
+    const handleDrawerToggle = useCallback(
+        (isOpen: boolean, event?: React.KeyboardEvent) => {
+            if (event) {
+                if (event.type === 'keydown') {
+                    return;
+                }
+            }
+            setSideBarOpen(isOpen);
         },
-        [setKeyword]
+        [setSideBarOpen]
     );
 
     return (
@@ -40,32 +41,27 @@ const Header = (): JSX.Element => {
                         role="button"
                     />
                     <div className={'flex items-end'}>
-                        <TextField
-                            fullWidth={false}
-                            label="検索フィルタ"
-                            margin="dense"
-                            multiline={false}
-                            required={false}
-                            rows={1}
-                            value={keyword}
-                            type="text"
-                            onChange={inputKeyword}
-                        />
+                        <div className={'sm-max:hidden'}>
+                            <SearchBox />{' '}
+                        </div>
+                        <div className={'sm-max:hidden mb-1'}>
+                            <SelectMenus />
+                        </div>
+
                         <IconButton
-                            onClick={() => {
-                                if (keyword !== '') {
-                                    router.push(
-                                        '/' + id + '?search=' + keyword
-                                    );
-                                }
-                            }}
+                            aria-label="Menu Items"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={() => handleDrawerToggle(true)}
+                            color="inherit"
+                            className={'sm:hidden'}
                         >
-                            <SearchIcon />
+                            <MenuIcon />
                         </IconButton>
                     </div>
-                    <SelectMenus />
                 </Toolbar>
             </AppBar>
+            <ClosableDrawer open={sideBarOpen} onClose={handleDrawerToggle} />
         </div>
     );
 };
