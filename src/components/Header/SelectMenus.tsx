@@ -12,7 +12,7 @@ export default function SelectMenus({
     const router = useRouter();
 
     let { id } = router.query;
-    if (id === undefined) {
+    if (!id) {
         id = '';
     }
 
@@ -42,7 +42,7 @@ export default function SelectMenus({
             }
             drawerClose(false);
         },
-        [search]
+        [search, id]
     );
 
     return (

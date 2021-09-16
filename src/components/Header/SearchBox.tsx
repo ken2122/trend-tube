@@ -21,7 +21,7 @@ const SearchBox = ({
     );
 
     let { id } = router.query;
-    if (id === undefined) {
+    if (!id) {
         id = '';
     }
 
