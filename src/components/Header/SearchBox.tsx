@@ -4,7 +4,11 @@ import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 
-const SearchBox = (): JSX.Element => {
+const SearchBox = ({
+    onclose,
+}: {
+    onclose?: (isOpen: boolean, event?: React.KeyboardEvent<Element>) => void;
+}): JSX.Element => {
     const router = useRouter();
 
     const [keyword, setKeyword] = useState('');
@@ -23,6 +27,14 @@ const SearchBox = (): JSX.Element => {
 
     const { sort } = router.query;
 
+    const drawerClose = (bool: boolean) => {
+        if (onclose) {
+            return onclose(bool);
+        } else {
+            return;
+        }
+    };
+
     return (
         <div className={'mr-4 flex items-end'}>
             <TextField
@@ -38,8 +50,8 @@ const SearchBox = (): JSX.Element => {
             />
             <IconButton
                 onClick={() => {
-                    if (keyword !== '') {
-                        if (sort !== undefined) {
+                    if (keyword) {
+                        if (sort) {
                             router.push(
                                 '/' +
                                     id +
@@ -51,6 +63,7 @@ const SearchBox = (): JSX.Element => {
                         } else {
                             router.push('/' + id + '?search=' + keyword);
                         }
+                        drawerClose(false);
                     }
                 }}
             >

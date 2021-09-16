@@ -42,7 +42,7 @@ const Header = (): JSX.Element => {
                     />
                     <div className={'flex items-end'}>
                         <div className={'sm-max:hidden'}>
-                            <SearchBox />{' '}
+                            <SearchBox />
                         </div>
                         <div className={'sm-max:hidden mb-1'}>
                             <SelectMenus />

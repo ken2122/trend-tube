@@ -4,7 +4,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
-export default function SelectMenus(): JSX.Element {
+export default function SelectMenus({
+    onclose,
+}: {
+    onclose?: (isOpen: boolean, event?: React.KeyboardEvent<Element>) => void;
+}): JSX.Element {
     const router = useRouter();
 
     let { id } = router.query;
@@ -14,9 +18,17 @@ export default function SelectMenus(): JSX.Element {
 
     const { search } = router.query;
 
+    const drawerClose = (bool: boolean) => {
+        if (onclose) {
+            return onclose(bool);
+        } else {
+            return;
+        }
+    };
+
     const handleChange = useCallback(
         (event: React.ChangeEvent<HTMLSelectElement>) => {
-            if (search !== undefined) {
+            if (search) {
                 router.push(
                     '/' +
                         id +
@@ -28,6 +40,7 @@ export default function SelectMenus(): JSX.Element {
             } else {
                 router.push('/' + id + '?sort=' + event.target.value);
             }
+            drawerClose(false);
         },
         [search]
     );

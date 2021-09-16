@@ -24,8 +24,8 @@ const ClosableDrawer = (props: ClosableDrawerProps): JSX.Element => {
                 <div onKeyDown={(e) => props.onClose(false, e)}>
                     <Divider />
                     <List className={'ml-2'}>
-                        <SearchBox />
-                        <SelectMenus />
+                        <SearchBox onclose={props.onClose} />
+                        <SelectMenus onclose={props.onClose} />
                     </List>
                 </div>
             </Drawer>
