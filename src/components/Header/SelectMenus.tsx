@@ -12,11 +12,24 @@ export default function SelectMenus(): JSX.Element {
         id = '';
     }
 
+    const { search } = router.query;
+
     const handleChange = useCallback(
         (event: React.ChangeEvent<HTMLSelectElement>) => {
-            router.push('/' + id + '?sort=' + event.target.value);
+            if (search !== undefined) {
+                router.push(
+                    '/' +
+                        id +
+                        '?search=' +
+                        search +
+                        '&sort=' +
+                        event.target.value
+                );
+            } else {
+                router.push('/' + id + '?sort=' + event.target.value);
+            }
         },
-        []
+        [search]
     );
 
     return (

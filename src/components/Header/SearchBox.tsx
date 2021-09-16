@@ -21,6 +21,8 @@ const SearchBox = (): JSX.Element => {
         id = '';
     }
 
+    const { sort } = router.query;
+
     return (
         <div className={'mr-4 flex items-end'}>
             <TextField
@@ -37,7 +39,18 @@ const SearchBox = (): JSX.Element => {
             <IconButton
                 onClick={() => {
                     if (keyword !== '') {
-                        router.push('/' + id + '?search=' + keyword);
+                        if (sort !== undefined) {
+                            router.push(
+                                '/' +
+                                    id +
+                                    '?search=' +
+                                    keyword +
+                                    '&sort=' +
+                                    sort
+                            );
+                        } else {
+                            router.push('/' + id + '?search=' + keyword);
+                        }
                     }
                 }}
             >

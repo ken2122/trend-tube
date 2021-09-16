@@ -1,3 +1,4 @@
+import { convertDate } from './convertDate';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,14 +11,7 @@ const VideoCard = (props: CardProps): JSX.Element => {
     });
 
     const now = new Date();
-    const time = props.publishedAt.split(/-|T|:/).map((date) => Number(date));
-    const publishedDate = new Date(
-        time[0], //西暦
-        time[1] - 1, //月
-        time[2], //日
-        time[3], //時
-        time[4] //分
-    );
+    const publishedDate = convertDate(props.publishedAt);
     const diffMillisecond = Number(now) - Number(publishedDate);
     const diffDate = new Date(diffMillisecond - 32400000);
 

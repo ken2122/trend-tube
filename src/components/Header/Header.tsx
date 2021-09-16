@@ -47,7 +47,6 @@ const Header = (): JSX.Element => {
                         <div className={'sm-max:hidden mb-1'}>
                             <SelectMenus />
                         </div>
-
                         <IconButton
                             aria-label="Menu Items"
                             aria-controls="menu-appbar"
