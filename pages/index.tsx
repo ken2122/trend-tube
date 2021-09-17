@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { fetchVideos } from '../src/components/videos/fetchVideos';
-import { searchVideos } from '../src/components/videos/searchVieos';
-import { sortVideos } from '../src/components/videos/sortVieos';
+import { searchVideos } from '../src/components/videos/searchVideos';
+import { sortVideos } from '../src/components/videos/sortVideos';
 import VideoCard from '../src/components/videos/VideoCard';
 import { PageProps } from '../src/types/type';
 

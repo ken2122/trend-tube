@@ -3,7 +3,7 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import SearchBox from './SearchBox';
-import SelectMenus from './SelectMenus';
+import SelectMenus from './Selectbox';
 import { ClosableDrawerProps } from '../../types/type';
 
 const ClosableDrawer = (props: ClosableDrawerProps): JSX.Element => {
