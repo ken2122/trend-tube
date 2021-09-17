@@ -20,18 +20,16 @@ const SearchBox = ({
         [setKeyword]
     );
 
-    let { id } = router.query;
+    let id = router.query.id;
     if (!id) {
         id = '';
     }
 
-    const { sort } = router.query;
+    const sort = router.query.sort;
 
     const drawerClose = (bool: boolean) => {
         if (onclose) {
             return onclose(bool);
-        } else {
-            return;
         }
     };
 

@@ -15,7 +15,7 @@ const a11yProps = (id: string) => {
 const ScrollableTab = (): JSX.Element => {
     const router = useRouter();
     let pathNumber: number;
-    const { id } = router.query;
+    const id = router.query.id;
 
     switch (id) {
         case 'anime':

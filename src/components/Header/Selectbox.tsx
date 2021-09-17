@@ -11,18 +11,16 @@ export default function SelectMenus({
 }): JSX.Element {
     const router = useRouter();
 
-    let { id } = router.query;
+    let id = router.query.id;
     if (!id) {
         id = '';
     }
 
-    const { search } = router.query;
+    const search = router.query.search;
 
     const drawerClose = (bool: boolean) => {
         if (onclose) {
             return onclose(bool);
-        } else {
-            return;
         }
     };
 

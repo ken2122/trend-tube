@@ -41,6 +41,7 @@ export type ClosableDrawerProps = {
 
 declare module 'querystring' {
     interface ParsedUrlQuery {
+        id?: string;
         search?: string;
         sort?: string;
     }
