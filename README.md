@@ -2,7 +2,7 @@
 
 ## URL
 
-https://trend-tube-2s9iuob9r-ken2122.vercel.app/
+https://trend-tube-jx6e5u4de-ken2122.vercel.app/
 
 ## 使用技術
 
@@ -29,6 +29,16 @@ YouTube Data API
 <br>
 <br>
 <img width="700" alt="検索後" src=https://user-images.githubusercontent.com/78861708/133035071-17f61bb2-c2c7-4265-a184-220541b42ea2.png>
+
+### 並び替え
+
+1. ヘッダー右側にあるセレクトボックスをクリックすると並び替えの項目が表示される。（デフォルトは人気順）  
+   人気順、新着順、視聴回数順のいずれかに並び替える事ができる。
+
+<img width="700" alt="並び替え（クリック前）" src=https://user-images.githubusercontent.com/78861708/133634120-5dd20152-9386-4892-8a67-41e6c6a7e629.png>
+<br>
+<br>
+<img width="700" alt="並び替え（クリック後）" src=https://user-images.githubusercontent.com/78861708/133634134-ff51aeac-0301-4967-8723-04d9dd8f83d8.png>
 
 ## ISR
 
