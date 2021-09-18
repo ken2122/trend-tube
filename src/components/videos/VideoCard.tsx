@@ -3,6 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import { CardProps } from '../../types/type';
 
 const VideoCard = (props: CardProps): JSX.Element => {
@@ -101,16 +102,18 @@ const VideoCard = (props: CardProps): JSX.Element => {
                 </Typography>
             </div>
             <CardContent className={'text-left'}>
-                <div
-                    onClick={() =>
-                        window.open(
-                            'https://www.youtube.com/watch?v=' + props.id,
-                            '_blank',
-                            'noreferrer'
-                        )
-                    }
-                >
-                    <Typography component="p" className={'truncate'}>
+                <div>
+                    <Typography
+                        component="p"
+                        className={'truncate'}
+                        onClick={() =>
+                            window.open(
+                                'https://www.youtube.com/watch?v=' + props.id,
+                                '_blank',
+                                'noreferrer'
+                            )
+                        }
+                    >
                         {props.title}
                     </Typography>
                     <Typography
@@ -121,13 +124,23 @@ const VideoCard = (props: CardProps): JSX.Element => {
                         {props.channelTitle}
                     </Typography>
 
-                    <div className={'flex justify-between'}>
+                    <div className={'flex justify-between items-center'}>
                         <Typography color="textSecondary" component="p">
                             {fmt.format(Number(props.viewCount))}
                         </Typography>
-                        <Typography color="textSecondary" component="p">
-                            {publishedAt}
-                        </Typography>
+                        <div className={'flex items-center'}>
+                            <Typography color="textSecondary" component="p">
+                                {publishedAt}
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                size="small"
+                                className={'p-0 ml-1'}
+                                onClick={() => props.handleOpen()}
+                            >
+                                詳細
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </CardContent>

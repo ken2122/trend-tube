@@ -32,11 +32,17 @@ export type CardProps = {
     duration: string;
     viewCount: string;
     publishedAt: string;
+    handleOpen: () => void;
 };
 
 export type ClosableDrawerProps = {
     open: boolean;
     onClose: (isOpen: boolean, event?: React.KeyboardEvent) => void;
+};
+
+export type VideoDetailProps = {
+    open: boolean;
+    handleClose: () => void;
 };
 
 declare module 'querystring' {
