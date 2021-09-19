@@ -79,7 +79,7 @@ const VideoCard = (props: CardProps): JSX.Element => {
 
     return (
         <Card className={'m-1 w-100%-2 md:m-2 md:w-1/2-4 xl:m-4 xl:w-1/3-8'}>
-            <div className={'relative'}>
+            <div className={'relative cursor-pointer'}>
                 <CardMedia
                     component="img"
                     alt={props.title}
@@ -105,7 +105,7 @@ const VideoCard = (props: CardProps): JSX.Element => {
                 <div>
                     <Typography
                         component="p"
-                        className={'truncate'}
+                        className={'truncate cursor-pointer'}
                         onClick={() =>
                             window.open(
                                 'https://www.youtube.com/watch?v=' + props.id,
