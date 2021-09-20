@@ -7,6 +7,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from '../src/assets/theme';
 import Header from '../src/components/Header/Header';
 import ScrollableTab from '../src/components/Header/ScrollableTab';
+import { Provider } from 'react-redux';
+import { useStore } from '../src/redux/store/store';
 import { PageProps } from '../src/types/type';
 
 type AppPageProps = Omit<AppProps<PageProps>, 'pageProps'> & {
@@ -25,24 +27,28 @@ export default function App({
         }
     }, []);
 
+    const store = useStore();
+
     return (
-        <React.Fragment>
-            <Head>
-                <title>Trend Tube</title>
-                <meta
-                    name="viewport"
-                    content="minimum-scale=1, initial-scale=1, width=device-width"
-                />
-            </Head>
-            <ThemeProvider theme={theme}>
-                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline />
-                <Header />
-                <ScrollableTab />
-                <main className={'mt-28'}>
-                    <Component {...pageProps} />
-                </main>
-            </ThemeProvider>
-        </React.Fragment>
+        <Provider store={store}>
+            <React.Fragment>
+                <Head>
+                    <title>Trend Tube</title>
+                    <meta
+                        name="viewport"
+                        content="minimum-scale=1, initial-scale=1, width=device-width"
+                    />
+                </Head>
+                <ThemeProvider theme={theme}>
+                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                    <CssBaseline />
+                    <Header />
+                    <ScrollableTab />
+                    <main className={'mt-28'}>
+                        <Component {...pageProps} />
+                    </main>
+                </ThemeProvider>
+            </React.Fragment>
+        </Provider>
     );
 }

@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { fetchVideos } from '../src/components/videos/fetchVideos';
 import { searchVideos } from '../src/components/videos/searchVideos';
 import { sortVideos } from '../src/components/videos/sortVideos';
+import { organizeVideo } from '../src/components/videos/organizeVideo';
 import VideoCard from '../src/components/videos/VideoCard';
 import VideoDetail from '../src/components/Dialog/VideoDetail';
 
@@ -122,13 +123,7 @@ const Index = ({ trendingVideos }: PageProps): JSX.Element => {
             {sortedVideos.map((data) => (
                 <VideoCard
                     key={data.id}
-                    id={data.id}
-                    title={data.snippet.title}
-                    channelTitle={data.snippet.channelTitle}
-                    thumbnails={data.snippet.thumbnails.high.url}
-                    duration={data.contentDetails.duration}
-                    viewCount={data.statistics.viewCount}
-                    publishedAt={data.snippet.publishedAt}
+                    video={organizeVideo(data)}
                     handleOpen={handleOpen}
                 />
             ))}

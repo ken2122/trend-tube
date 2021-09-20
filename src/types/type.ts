@@ -20,18 +20,24 @@ export type FetchVideos = {
     items: Item[];
 };
 
+export type Video = {
+    duration: string;
+    id: string;
+    categoryId: string;
+    channelTitle: string;
+    publishedAt: string;
+    tags: string[];
+    thumbnails: string;
+    title: string;
+    viewCount: string;
+};
+
 export type PageProps = {
     trendingVideos: Item[];
 };
 
 export type CardProps = {
-    id: string;
-    title: string;
-    channelTitle: string;
-    thumbnails: string;
-    duration: string;
-    viewCount: string;
-    publishedAt: string;
+    video: Video;
     handleOpen: () => void;
 };
 

@@ -1,4 +1,6 @@
 import { convertDate } from './convertDate';
+import { useDispatch } from 'react-redux';
+import { videoDetailInState } from '../../redux/videos/operations';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -7,12 +9,14 @@ import Button from '@material-ui/core/Button';
 import { CardProps } from '../../types/type';
 
 const VideoCard = (props: CardProps): JSX.Element => {
+    const dispatch = useDispatch();
+
     const fmt = new Intl.NumberFormat('ja-JP', {
         notation: 'compact',
     });
 
     const now = new Date();
-    const publishedDate = convertDate(props.publishedAt);
+    const publishedDate = convertDate(props.video.publishedAt);
     const diffMillisecond = Number(now) - Number(publishedDate);
     const diffDate = new Date(diffMillisecond - 32400000);
 
@@ -47,7 +51,7 @@ const VideoCard = (props: CardProps): JSX.Element => {
             publishedAt = date[i] + '分前';
     }
 
-    const duration = props.duration.split(/PT|H|M|S/);
+    const duration = props.video.duration.split(/PT|H|M|S/);
     let newDuration: string;
 
     const add0 = (time: string) => {
@@ -60,9 +64,9 @@ const VideoCard = (props: CardProps): JSX.Element => {
         }
     };
 
-    switch (props.duration.indexOf('M')) {
+    switch (props.video.duration.indexOf('M')) {
         case -1:
-            if (props.duration.indexOf('H') > 0) {
+            if (props.video.duration.indexOf('H') > 0) {
                 newDuration = duration[1] + ':00:' + add0(duration[2]);
             } else {
                 newDuration = '0:' + add0(duration[1]);
@@ -82,13 +86,13 @@ const VideoCard = (props: CardProps): JSX.Element => {
             <div className={'relative cursor-pointer'}>
                 <CardMedia
                     component="img"
-                    alt={props.title}
-                    image={props.thumbnails}
+                    alt={props.video.title}
+                    image={props.video.thumbnails}
                     className={'bg-contain'}
-                    title={props.title}
+                    title={props.video.title}
                     onClick={() =>
                         window.open(
-                            'https://www.youtube.com/watch?v=' + props.id,
+                            'https://www.youtube.com/watch?v=' + props.video.id,
                             '_blank',
                             'noreferrer'
                         )
@@ -108,25 +112,26 @@ const VideoCard = (props: CardProps): JSX.Element => {
                         className={'truncate cursor-pointer'}
                         onClick={() =>
                             window.open(
-                                'https://www.youtube.com/watch?v=' + props.id,
+                                'https://www.youtube.com/watch?v=' +
+                                    props.video.id,
                                 '_blank',
                                 'noreferrer'
                             )
                         }
                     >
-                        {props.title}
+                        {props.video.title}
                     </Typography>
                     <Typography
                         color="textSecondary"
                         component="p"
                         className={'truncate'}
                     >
-                        {props.channelTitle}
+                        {props.video.channelTitle}
                     </Typography>
 
                     <div className={'flex justify-between items-center'}>
                         <Typography color="textSecondary" component="p">
-                            {fmt.format(Number(props.viewCount))}
+                            {fmt.format(Number(props.video.viewCount))}
                         </Typography>
                         <div className={'flex items-center'}>
                             <Typography color="textSecondary" component="p">
@@ -136,7 +141,10 @@ const VideoCard = (props: CardProps): JSX.Element => {
                                 variant="contained"
                                 size="small"
                                 className={'p-0 ml-1'}
-                                onClick={() => props.handleOpen()}
+                                onClick={() => {
+                                    props.handleOpen();
+                                    dispatch(videoDetailInState(props.video));
+                                }}
                             >
                                 詳細
                             </Button>

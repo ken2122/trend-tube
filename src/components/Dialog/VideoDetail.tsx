@@ -1,4 +1,5 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
+import { getVideo } from '../../redux/videos/selectors';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,9 +8,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { VideoDetailProps } from '../../types/type';
 
 const VideoDetail = (props: VideoDetailProps): JSX.Element => {
+    const selector = useSelector((state) => state);
+    const video = getVideo(selector);
+
     return (
         <Dialog open={props.open} onClose={() => props.handleClose()}>
-            <DialogTitle>動画詳細</DialogTitle>
+            <DialogTitle>{video.title}</DialogTitle>
             <DialogContent></DialogContent>
             <DialogActions>
                 <Button onClick={() => props.handleClose()} color="primary">
