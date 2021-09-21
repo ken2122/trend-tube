@@ -1,8 +1,18 @@
-// import { InitialState } from '../../../types/index';
+import { InitialState } from '../../types/reduxType';
 
-const initialState = {
+const initialState: InitialState = {
     videos: {
-        video: {},
+        video: {
+            id: '',
+            categoryId: '',
+            title: ',',
+            channelTitle: '',
+            thumbnails: '',
+            duration: '',
+            viewCount: '',
+            publishedAt: '',
+            tags: [],
+        },
     },
 };
 
