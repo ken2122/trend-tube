@@ -2,7 +2,7 @@
 
 ## URL
 
-https://trend-tube-jx6e5u4de-ken2122.vercel.app/
+https://trend-tube-cmb7ogoaf-ken2122.vercel.app/
 
 ## 使用技術
 
@@ -39,6 +39,15 @@ YouTube Data API
 <br>
 <br>
 <img width="700" alt="並び替え（クリック後）" src=https://user-images.githubusercontent.com/78861708/133634134-ff51aeac-0301-4967-8723-04d9dd8f83d8.png>
+
+### 詳細表示
+
+1. 動画右下にある"詳細"ボタンをクリックすると、動画の詳細な情報が記載されたダイアログが表示される。
+
+<img width="700" alt="詳細" src=https://user-images.githubusercontent.com/78861708/134335696-b3349743-3999-4305-aae3-8dab33fbb2a2.png>
+<br>
+<br>
+<img width="700" alt="ダイアログ" src=https://user-images.githubusercontent.com/78861708/134335705-f17c07dd-856f-4b7d-a0d7-c84ff6835013.png>
 
 ## ISR
 
