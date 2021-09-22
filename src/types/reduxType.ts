@@ -6,6 +6,8 @@ export type InitialState = {
     };
 };
 
+export type VideosAction = { type: 'VIDEO_DETAIL'; payload: { video: Video } };
+
 declare module 'react-redux' {
     interface DefaultRootState extends InitialState {}
 }
